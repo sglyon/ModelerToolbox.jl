@@ -241,98 +241,132 @@
 <li><code>group_keys(::T)</code>: gives a unique key that allows you to distinguish one instance of type <code>T</code> from another.</li>
 </ol>
 <p>Once these two methods have been defined for your type <code>T</code>, ModelerToolbox provides the following methods (see docstrings for details on what each of them does):</p>
-<p><a id='ModelerToolbox.delete_group!' href='#ModelerToolbox.delete_group!'>#</a>
-<strong><code>ModelerToolbox.delete_group!</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">delete_group!</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Delete the jld group associated with the instance of <code>x</code> and remove its entry from the group map.</p>
-<p><a id='ModelerToolbox.delete_jld!' href='#ModelerToolbox.delete_jld!'>#</a>
-<strong><code>ModelerToolbox.delete_jld!</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">delete_jld!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Delete the object with name <code>dataset</code> from <code>x</code>'s jld group</p>
-<p><a id='ModelerToolbox.groupname' href='#ModelerToolbox.groupname'>#</a>
-<strong><code>ModelerToolbox.groupname</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">groupname</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Returns a tuple <code>(name, group_map_exists, group_exists)</code> specifying the <code>name</code> of the group for x, whether a map from <code>group_keys(x)</code> to a group name exists in the jld file, and whether or not a group with <code>name</code> exists in the jld file. Mostly an internal function</p>
-<p><a id='ModelerToolbox.groupname!' href='#ModelerToolbox.groupname!'>#</a>
-<strong><code>ModelerToolbox.groupname!</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">groupname!</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Returns the same as <code>groupname(x)</code>, but also creates the group map (if <code>group_map_exists == false</code>) and the group (if <code>group_exists == false</code>).</p>
-<p><a id='ModelerToolbox.groups' href='#ModelerToolbox.groups'>#</a>
-<strong><code>ModelerToolbox.groups</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">groups</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Return the dict mapping keys to jld group names for all objects of type <code>typeof(x)</code>. If the dict doesn't yet exist, it is created, along with a group for the instance <code>x</code>.</p>
-<p><a id='ModelerToolbox.haskey_jld' href='#ModelerToolbox.haskey_jld'>#</a>
-<strong><code>ModelerToolbox.haskey_jld</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">haskey_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Check if the jld group for <code>x</code> has an object named <code>dataset</code></p>
-<p><a id='ModelerToolbox.init_jld' href='#ModelerToolbox.init_jld'>#</a>
-<strong><code>ModelerToolbox.init_jld</code></strong> &mdash; <em>Function</em>.</p>
+<p><a id='ModelerToolbox.init_jld-Tuple{Any}' href='#ModelerToolbox.init_jld-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.init_jld</code></strong> &mdash; <em>Method</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">init_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">force</span><span class="o">=</span><span class="n">false</span><span class="p">])</span>
 </pre></div>
 
 
 <p>Initialize the jld_file for objects of type <code>typeof(x)</code>. This creates the file (if needed) and ensures that a <code>groups</code> dataset exists and constructs a group for the instance <code>x</code>.</p>
 <p>If <code>force</code> is <code>true</code> any existing file is overwritten and the above operations are performed.</p>
-<p><a id='ModelerToolbox.names_jld' href='#ModelerToolbox.names_jld'>#</a>
-<strong><code>ModelerToolbox.names_jld</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">names_jld</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<p>This should only be called by users when they want to completely reconstruct the jld file.</p>
+<p><a id='ModelerToolbox.groupname-Tuple{Any}' href='#ModelerToolbox.groupname-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.groupname</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">groupname</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 
 
-<p>List all the names in <code>x</code>'s jld group</p>
-<p><a id='ModelerToolbox.read_jld' href='#ModelerToolbox.read_jld'>#</a>
-<strong><code>ModelerToolbox.read_jld</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">read_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">)</span>
+<p>Returns a tuple <code>(name, group_map_exists, group_exists)</code> specifying the <code>name</code> of the group for x, whether a map from <code>group_keys(x)</code> to a group name exists in the jld file, and whether or not a group with <code>name</code> exists in the jld file. Mostly an internal function</p>
+<p><a id='ModelerToolbox.groupname!-Tuple{Any}' href='#ModelerToolbox.groupname!-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.groupname!</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">groupname!</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 
 
-<p>Read the object with <code>nm</code> from  <code>x</code>'s jld group</p>
-<p><a id='ModelerToolbox.with_file' href='#ModelerToolbox.with_file'>#</a>
-<strong><code>ModelerToolbox.with_file</code></strong> &mdash; <em>Function</em>.</p>
-<div class="codehilite"><pre><span></span><span class="n">with_file</span><span class="p">(</span><span class="n">func!</span><span class="p">::</span><span class="n">Function</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<p>Returns the same as <code>groupname(x)</code>, but also creates the group map (if <code>group_map_exists == false</code>) and the group (if <code>group_exists == false</code>).</p>
+<p><a id='ModelerToolbox.delete_group!-Tuple{Any}' href='#ModelerToolbox.delete_group!-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.delete_group!</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">delete_group!</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
 
-<p>With the jld file object for objects of type <code>typeof(x)</code> as <code>f</code>, call <code>func!(f)</code>. This is a core method that is used to interact with the jld file as a whole.</p>
-<p><a id='ModelerToolbox.with_group' href='#ModelerToolbox.with_group'>#</a>
-<strong><code>ModelerToolbox.with_group</code></strong> &mdash; <em>Function</em>.</p>
+<p>Delete the jld group associated with the instance of <code>x</code> and remove its entry from the group map.</p>
+<p><a id='ModelerToolbox.with_group-Tuple{Any,Any}' href='#ModelerToolbox.with_group-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.with_group</code></strong> &mdash; <em>Method</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">with_group</span><span class="p">(</span><span class="n">func!</span><span class="p">::</span><span class="n">Function</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 
 
 <p>With the jld group corresponding to the instance <code>x</code> as <code>g</code>, call <code>func!(g)</code>. This is a core method that is used to interact with the group for an object.</p>
-<p><a id='ModelerToolbox.write_jld' href='#ModelerToolbox.write_jld'>#</a>
-<strong><code>ModelerToolbox.write_jld</code></strong> &mdash; <em>Function</em>.</p>
+<p><a id='ModelerToolbox.@with_group' href='#ModelerToolbox.@with_group'>#</a>
+<strong><code>ModelerToolbox.@with_group</code></strong> &mdash; <em>Macro</em>.</p>
+<div class="codehilite"><pre><span></span><span class="k">macro</span> <span class="n">with_group</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Wrap the body of a function <code>func</code> in a call to <code>with_group</code>. This is best understood by example.</p>
+<div class="codehilite"><pre><span></span><span class="p">@</span><span class="n">with_group</span> <span class="n">write_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">=</span> <span class="n">write</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+</pre></div>
+
+
+<p>is equivalent to</p>
+<div class="codehilite"><pre><span></span><span class="n">write_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">=</span> <span class="n">with_group</span><span class="p">(</span><span class="n">g</span> <span class="o">-&gt;</span> <span class="n">write</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p><a id='ModelerToolbox.with_file-Tuple{Any,Any}' href='#ModelerToolbox.with_file-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.with_file</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">with_file</span><span class="p">(</span><span class="n">func!</span><span class="p">::</span><span class="n">Function</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>With the jld file object for objects of type <code>typeof(x)</code> as <code>f</code>, call <code>func!(f)</code>. This is a core method that is used to interact with the jld file as a whole.</p>
+<p><a id='ModelerToolbox.@with_file' href='#ModelerToolbox.@with_file'>#</a>
+<strong><code>ModelerToolbox.@with_file</code></strong> &mdash; <em>Macro</em>.</p>
+<div class="codehilite"><pre><span></span><span class="k">macro</span> <span class="n">with_group</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Wrap the body of a function <code>func</code> in a call to <code>with_file</code>. This is best understood by example.</p>
+<div class="codehilite"><pre><span></span><span class="p">@</span><span class="n">with_file</span> <span class="n">foobar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">foobar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+<p>is equivalent to</p>
+<div class="codehilite"><pre><span></span><span class="n">foobar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">=</span> <span class="n">with_file</span><span class="p">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">foobar</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here's the same example from the REPL (note that some comments have been removed from the output)</p>
+<p><a id='ModelerToolbox.write_jld-Tuple{Any,Any,Any}' href='#ModelerToolbox.write_jld-Tuple{Any,Any,Any}'>#</a>
+<strong><code>ModelerToolbox.write_jld</code></strong> &mdash; <em>Method</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">write_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Write the object <code>obj</code> <code>x</code>'s jld group under name <code>nm</code></p>
-<p><a id='ModelerToolbox.write_jld!' href='#ModelerToolbox.write_jld!'>#</a>
-<strong><code>ModelerToolbox.write_jld!</code></strong> &mdash; <em>Function</em>.</p>
+<p><a id='ModelerToolbox.write_jld!-Tuple{Any,Any,Any}' href='#ModelerToolbox.write_jld!-Tuple{Any,Any,Any}'>#</a>
+<strong><code>ModelerToolbox.write_jld!</code></strong> &mdash; <em>Method</em>.</p>
 <div class="codehilite"><pre><span></span><span class="n">write_jld!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Write the object <code>obj</code> <code>x</code>'s jld group under name <code>nm</code>. This routine will overwrite any existing object with name <code>nm</code> in the group.</p>
+<p><a id='ModelerToolbox.read_jld-Tuple{Any,Any}' href='#ModelerToolbox.read_jld-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.read_jld</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">read_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Read the object with <code>nm</code> from  <code>x</code>'s jld group</p>
+<p><a id='ModelerToolbox.delete_jld!-Tuple{Any,Any}' href='#ModelerToolbox.delete_jld!-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.delete_jld!</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">delete_jld!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Delete the object with name <code>dataset</code> from <code>x</code>'s jld group</p>
+<p><a id='ModelerToolbox.haskey_jld-Tuple{Any,Any}' href='#ModelerToolbox.haskey_jld-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.haskey_jld</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">haskey_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Check if the jld group for <code>x</code> has an object named <code>dataset</code></p>
+<p><a id='ModelerToolbox.names_jld-Tuple{Any}' href='#ModelerToolbox.names_jld-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.names_jld</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">names_jld</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>List all the names in <code>x</code>'s jld group</p>
+<p><a id='ModelerToolbox.groups-Tuple{Any}' href='#ModelerToolbox.groups-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.groups</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">groups</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Return the dict mapping keys to jld group names for all objects of type <code>typeof(x)</code>. If the dict doesn't yet exist, it is created, along with a group for the instance <code>x</code>.</p>
           <aside class="copyright" role="note">
             
               Copyright &copy; 2016 <a href="http://spencerlyon.com/">Spencer Lyon</a> &ndash;
