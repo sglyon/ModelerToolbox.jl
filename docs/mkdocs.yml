@@ -1,0 +1,36 @@
+site_name:        ModelerToolbox.jl
+repo_url:         https://github.com/spencerlyon2/ModelerToolbox.jl
+site_description: Utilities for working with many different versions/parameterizations of models
+site_author:      Spencer Lyon
+theme_dir: 'theme'
+
+pages:
+  - Home: index.md
+  - JLD: jld.md
+
+extra_css:
+  - assets/Documenter.css
+  - css/github.css
+
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - assets/mathjaxhelper.js
+
+markdown_extensions:
+  - extra
+  - tables
+  - fenced_code
+  - mdx_math
+  - codehilite
+  - toc:
+      permalink: ¶
+  - admonition
+
+docs_dir: 'build'
+
+extra:
+  version: '0.0.0'
+  author:
+    github: 'spencerlyon2'
+
+copyright: Copyright &copy; 2016 <a href="http://spencerlyon.com/">Spencer Lyon</a>

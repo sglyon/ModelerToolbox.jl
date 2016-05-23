@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    
+      
+        <title>JLD - ModelerToolbox.jl</title>
+      
+      
+      
+      
+        <meta name="author" content="Spencer Lyon">
+      
+    
+    <meta property="og:url" content="None">
+    <meta property="og:title" content="ModelerToolbox.jl">
+    <meta property="og:image" content="None/../">
+    <meta name="apple-mobile-web-app-title" content="ModelerToolbox.jl">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon-e565ddfa3b.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon-e565ddfa3b.ico">
+    <style>
+      @font-face {
+      	font-family: 'Icon';
+      	src: url('../assets/fonts/icon.eot?52m981');
+      	src: url('../assets/fonts/icon.eot?#iefix52m981')
+               format('embedded-opentype'),
+      		   url('../assets/fonts/icon.woff?52m981')
+               format('woff'),
+      		   url('../assets/fonts/icon.ttf?52m981')
+               format('truetype'),
+      		   url('../assets/fonts/icon.svg?52m981#icon')
+               format('svg');
+      	font-weight: normal;
+      	font-style: normal;
+      }
+    </style>
+    <link rel="stylesheet" href="../assets/stylesheets/application-21e06ffc21.css">
+    
+    
+      
+      
+      
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono">
+      <style>
+        body, input {
+          font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        }
+        pre, code {
+          font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+        }
+      </style>
+    
+    
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+      <script src="../assets/mathjaxhelper.js"></script>
+    
+    
+      <link rel="stylesheet" href="../assets/Documenter.css">
+    
+      <link rel="stylesheet" href="../css/github.css">
+    
+    <script src="../assets/javascripts/modernizr-4a5cc7e01e.js"></script>
+    
+  </head>
+  
+  
+  
+  <body class=" ">
+    
+      
+      
+    
+    <div class="backdrop">
+      <div class="backdrop-paper"></div>
+    </div>
+    <input class="toggle" type="checkbox" id="toggle-drawer">
+    <input class="toggle" type="checkbox" id="toggle-search">
+    <label class="toggle-button overlay" for="toggle-drawer"></label>
+    <header class="header">
+      <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        
+          <span class="path">
+            
+          </span>
+        
+        JLD
+      </div>
+    </div>
+    
+    
+      
+      <div class="button button-github" role="button" aria-label="GitHub">
+        <a href="https://github.com/spencerlyon2" title="@spencerlyon2 on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+      </div>
+    
+    <div class="button button-search" role="button" aria-label="Search">
+      <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
+    </div>
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+    </header>
+    <main class="main">
+      
+      <div class="drawer">
+        <nav aria-label="Navigation">
+  
+  <a href="https://github.com/spencerlyon2/ModelerToolbox.jl" class="project">
+    <div class="banner">
+      
+      <div class="name">
+        <strong>ModelerToolbox.jl 0.0.0</strong>
+        
+          <br>
+          spencerlyon2/ModelerToolbox.jl
+        
+      </div>
+    </div>
+  </a>
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            
+            <a href="https://github.com/spencerlyon2/ModelerToolbox.jl/archive/0.0.0.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/spencerlyon2/ModelerToolbox.jl/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+      <div class="toc">
+        <ul>
+          
+            
+  <li>
+    <a class="" title="Home" href="..">
+      Home
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="current" title="JLD" href="./">
+      JLD
+    </a>
+    
+      
+      
+        <ul>
+          
+            <li class="anchor">
+              <a title="JLD tools" href="#jld-tools">
+                JLD tools
+              </a>
+            </li>
+          
+        </ul>
+      
+    
+  </li>
+
+          
+        </ul>
+        
+          <hr>
+          <span class="section">The author</span>
+          <ul>
+            
+            
+              
+              <li>
+                <a href="https://github.com/spencerlyon2" target="_blank" title="@spencerlyon2 on GitHub">
+                  @spencerlyon2 on GitHub
+                </a>
+              </li>
+            
+          </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+      </div>
+      <article class="article">
+        <div class="wrapper">
+          
+            <h1>JLD</h1>
+          
+          <p><a id='JLD-tools-1'></a></p>
+<h2 id="jld-tools">JLD tools<a class="headerlink" href="#jld-tools" title="Permanent link">¶</a></h2>
+<p>I often find myself working with many different parameterizations of a given model. I often need to store things like initial guesses, solutions, etc. so I can come back to the model and pick up right where I left off. In the past this has involved one of two things:</p>
+<ol>
+<li>Some ad hoc file naming system I use to identify which version of which model a particular object belongs to</li>
+<li>A variation of the same where I at least collect objects for the same model in a dedicated folder</li>
+</ol>
+<p>The main problem with this approach is that when I'm doing research, I don't usually know all the permutations of parameters and models that I'll need. This makes it very difficult to support this type of ad hoc system as the project expands. What I really needed was something that scales with the project.</p>
+<p>ModelerToolbox defines a set of routines that makes scalable, per model data storage easy. The routines are built on top of JLD.jl, which in turn uses HDF5.jl for storage.</p>
+<p>The user of this package will need to implement their own methods for two key functions exported by ModelerToolbox:</p>
+<ol>
+<li><code>jld_fn(::T)</code>: gives the full path to the jld file that should be used when storing data for objects of type <code>T</code></li>
+<li><code>group_keys(::T)</code>: gives a unique key that allows you to distinguish one instance of type <code>T</code> from another.</li>
+</ol>
+<p>Once these two methods have been defined for your type <code>T</code>, ModelerToolbox provides the following methods (see docstrings for details on what each of them does):</p>
+<p><a id='ModelerToolbox.init_jld-Tuple{Any}' href='#ModelerToolbox.init_jld-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.init_jld</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">init_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">force</span><span class="o">=</span><span class="n">false</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Initialize the jld_file for objects of type <code>typeof(x)</code>. This creates the file (if needed) and ensures that a <code>groups</code> dataset exists and constructs a group for the instance <code>x</code>.</p>
+<p>If <code>force</code> is <code>true</code> any existing file is overwritten and the above operations are performed.</p>
+<p>This should only be called by users when they want to completely reconstruct the jld file.</p>
+<p><a id='ModelerToolbox.groupname-Tuple{Any}' href='#ModelerToolbox.groupname-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.groupname</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">groupname</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a tuple <code>(name, group_map_exists, group_exists)</code> specifying the <code>name</code> of the group for x, whether a map from <code>group_keys(x)</code> to a group name exists in the jld file, and whether or not a group with <code>name</code> exists in the jld file. Mostly an internal function</p>
+<p><a id='ModelerToolbox.groupname!-Tuple{Any}' href='#ModelerToolbox.groupname!-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.groupname!</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">groupname!</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the same as <code>groupname(x)</code>, but also creates the group map (if <code>group_map_exists == false</code>) and the group (if <code>group_exists == false</code>).</p>
+<p><a id='ModelerToolbox.delete_group!-Tuple{Any}' href='#ModelerToolbox.delete_group!-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.delete_group!</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">delete_group!</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Delete the jld group associated with the instance of <code>x</code> and remove its entry from the group map.</p>
+<p><a id='ModelerToolbox.with_group-Tuple{Any,Any}' href='#ModelerToolbox.with_group-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.with_group</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">with_group</span><span class="p">(</span><span class="n">func!</span><span class="p">::</span><span class="n">Function</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>With the jld group corresponding to the instance <code>x</code> as <code>g</code>, call <code>func!(g)</code>. This is a core method that is used to interact with the group for an object.</p>
+<p><a id='ModelerToolbox.@with_group' href='#ModelerToolbox.@with_group'>#</a>
+<strong><code>ModelerToolbox.@with_group</code></strong> &mdash; <em>Macro</em>.</p>
+<div class="codehilite"><pre><span></span><span class="k">macro</span> <span class="n">with_group</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Wrap the body of a function <code>func</code> in a call to <code>with_group</code>. This is best understood by example.</p>
+<div class="codehilite"><pre><span></span><span class="p">@</span><span class="n">with_group</span> <span class="n">write_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">=</span> <span class="n">write</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+</pre></div>
+
+
+<p>is equivalent to</p>
+<div class="codehilite"><pre><span></span><span class="n">write_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">=</span> <span class="n">with_group</span><span class="p">(</span><span class="n">g</span> <span class="o">-&gt;</span> <span class="n">write</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p><a id='ModelerToolbox.with_file-Tuple{Any,Any}' href='#ModelerToolbox.with_file-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.with_file</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">with_file</span><span class="p">(</span><span class="n">func!</span><span class="p">::</span><span class="n">Function</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>With the jld file object for objects of type <code>typeof(x)</code> as <code>f</code>, call <code>func!(f)</code>. This is a core method that is used to interact with the jld file as a whole.</p>
+<p><a id='ModelerToolbox.@with_file' href='#ModelerToolbox.@with_file'>#</a>
+<strong><code>ModelerToolbox.@with_file</code></strong> &mdash; <em>Macro</em>.</p>
+<div class="codehilite"><pre><span></span><span class="k">macro</span> <span class="n">with_group</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Wrap the body of a function <code>func</code> in a call to <code>with_file</code>. This is best understood by example.</p>
+<div class="codehilite"><pre><span></span><span class="p">@</span><span class="n">with_file</span> <span class="n">foobar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">foobar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+<p>is equivalent to</p>
+<div class="codehilite"><pre><span></span><span class="n">foobar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">=</span> <span class="n">with_file</span><span class="p">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">foobar</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here's the same example from the REPL (note that some comments have been removed from the output)</p>
+<p><a id='ModelerToolbox.write_jld-Tuple{Any,Any,Any}' href='#ModelerToolbox.write_jld-Tuple{Any,Any,Any}'>#</a>
+<strong><code>ModelerToolbox.write_jld</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">write_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Write the object <code>obj</code> <code>x</code>'s jld group under name <code>nm</code></p>
+<p><a id='ModelerToolbox.write_jld!-Tuple{Any,Any,Any}' href='#ModelerToolbox.write_jld!-Tuple{Any,Any,Any}'>#</a>
+<strong><code>ModelerToolbox.write_jld!</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">write_jld!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Write the object <code>obj</code> <code>x</code>'s jld group under name <code>nm</code>. This routine will overwrite any existing object with name <code>nm</code> in the group.</p>
+<p><a id='ModelerToolbox.read_jld-Tuple{Any,Any}' href='#ModelerToolbox.read_jld-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.read_jld</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">read_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nm</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Read the object with <code>nm</code> from  <code>x</code>'s jld group</p>
+<p><a id='ModelerToolbox.delete_jld!-Tuple{Any,Any}' href='#ModelerToolbox.delete_jld!-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.delete_jld!</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">delete_jld!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Delete the object with name <code>dataset</code> from <code>x</code>'s jld group</p>
+<p><a id='ModelerToolbox.haskey_jld-Tuple{Any,Any}' href='#ModelerToolbox.haskey_jld-Tuple{Any,Any}'>#</a>
+<strong><code>ModelerToolbox.haskey_jld</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">haskey_jld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Check if the jld group for <code>x</code> has an object named <code>dataset</code></p>
+<p><a id='ModelerToolbox.names_jld-Tuple{Any}' href='#ModelerToolbox.names_jld-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.names_jld</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">names_jld</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>List all the names in <code>x</code>'s jld group</p>
+<p><a id='ModelerToolbox.groups-Tuple{Any}' href='#ModelerToolbox.groups-Tuple{Any}'>#</a>
+<strong><code>ModelerToolbox.groups</code></strong> &mdash; <em>Method</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">groups</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Return the dict mapping keys to jld group names for all objects of type <code>typeof(x)</code>. If the dict doesn't yet exist, it is created, along with a group for the instance <code>x</code>.</p>
+          <aside class="copyright" role="note">
+            
+              Copyright &copy; 2016 <a href="http://spencerlyon.com/">Spencer Lyon</a> &ndash;
+            
+            Documentation built with
+            <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
+            using the
+            <a href="http://squidfunk.github.io/mkdocs-material/" target="_blank">
+              Material
+            </a>
+            theme.
+          </aside>
+          
+            <footer class="footer">
+              
+  <nav class="pagination" aria-label="Footer">
+    <div class="previous">
+      
+        <a href=".." title="Home">
+          <span class="direction">
+            Previous
+          </span>
+          <div class="page">
+            <div class="button button-previous" role="button" aria-label="Previous">
+              <i class="icon icon-back"></i>
+            </div>
+            <div class="stretch">
+              <div class="title">
+                Home
+              </div>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+    <div class="next">
+      
+    </div>
+  </nav>
+
+            </footer>
+          
+        </div>
+      </article>
+      <div class="results" role="status" aria-live="polite">
+        <div class="scrollable">
+          <div class="wrapper">
+            <div class="meta"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      var base_url = '..';
+      var repo_id  = 'spencerlyon2/ModelerToolbox.jl';
+    </script>
+    <script src="../assets/javascripts/application-dfb6964a49.js"></script>
+    
+  </body>
+</html>
