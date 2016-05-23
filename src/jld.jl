@@ -119,14 +119,9 @@ end
 @with_file groups(m) = read(f, "groups")
 
 # this function will overwrite the object at `nm` if it already exists
-function write_jld!(x, nm, obj)
-    with_group(x) do g
-        if exists(g, nm)
-            delete!(g, nm)
-        end
-
-        write(g, nm, obj)
-    end
+@with_group function write_jld!(x, nm, obj)
+    exists(g, nm) && delete!(g, nm)
+    write(g, nm, obj)
 end
 
 function delete_group!(x)
