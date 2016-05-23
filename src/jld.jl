@@ -7,7 +7,8 @@ export
     groups,
 
     # core api methods
-    write_jld, read_jld, delete_jld!, names_jld, delete_group!, groups
+    write_jld, write_jld!, read_jld, delete_jld!, names_jld, delete_group!,
+    groups, haskey_jld
 
 # just define _function_ here so others can define methods
 function jld_fn end
@@ -113,9 +114,20 @@ end
 @with_group write_jld(x, nm, obj) = write(g, nm, obj)
 @with_group read_jld(x, dataset) = read(g, dataset)
 @with_group delete_jld!(x, dataset) = delete!(g, dataset)
-# @with_group haskey_jld(x, dataset) = haskey(g, dataset)
+@with_group haskey_jld(x, dataset) = exists(g, dataset)
 @with_group names_jld(x) = names(g)
 @with_file groups(m) = read(f, "groups")
+
+# this function will overwrite the object at `nm` if it already exists
+function write_jld!(x, nm, obj)
+    with_group(x) do g
+        if exists(g, nm)
+            delete!(g, nm)
+        end
+
+        write(g, nm, obj)
+    end
+end
 
 function delete_group!(x)
     name, group_map_exists, group_exists = groupname(x)
