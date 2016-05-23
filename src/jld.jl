@@ -7,7 +7,7 @@ export
     groups,
 
     # core api methods
-    write_jld, read_jld, delete_jld!, names_jld, delete_group!
+    write_jld, read_jld, delete_jld!, names_jld, delete_group!, groups
 
 # just define _function_ here so others can define methods
 function jld_fn end
@@ -130,7 +130,7 @@ function delete_group!(x)
         if group_map_exists
             # read existing map
             groups = read(f, "groups")
-            
+
             # remove this entry
             pop!(groups, group_keys(x))
 
