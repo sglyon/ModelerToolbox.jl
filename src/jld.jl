@@ -129,9 +129,8 @@ function delete_group!(x)
         # need to delete the entry in the group map
         if group_map_exists
             # read existing map
-            @show groups = read(f, "groups")
-            @show name
-
+            groups = read(f, "groups")
+            
             # remove this entry
             pop!(groups, group_keys(x))
 
