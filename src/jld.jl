@@ -65,8 +65,17 @@ function groupname(x)
         if exists(f, "groups")
             read(f, "groups")
         else
+            # make sure group1 doesn't already exist
+            if exists(f, "group1")
+                delete!(f, "group1")
+            end
             return "group1", false, false
         end
+    end
+
+    # HACK to return if grps isn't a Dict
+    if isa(grps, Tuple)
+        return grps
     end
 
     if haskey(grps, group_keys(x))
@@ -108,14 +117,18 @@ function groupname!(x)
         jldopen(jld_fn(x), "r+") do f
 
             if !group_map_exists
-                # get current groups
-                groups = read(f, "groups")
+                if exists(f, "groups")
+                    # get current groups
+                    groups = read(f, "groups")
 
-                # add this name
-                groups[group_keys(x)] = name
+                    # add this name
+                    groups[group_keys(x)] = name
 
-                # delete the groups object, then update it with the new one
-                delete!(f, "groups")
+                    # delete the groups object, then update it with the new one
+                    delete!(f, "groups")
+                else
+                    groups = Dict(group_keys(x) => name)
+                end
                 write(f, "groups", groups)
             end
 
@@ -218,9 +231,6 @@ is equivalent to
 ```julia
 foobar(x, nm, obj) = with_file(f -> foobar(y), x)
 ```
-
-Here's the same example from the REPL (note that some comments have been
-removed from the output)
 """
 macro with_file(ex)
     f, args, body = _get_f_args_body(ex)
