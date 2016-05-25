@@ -155,8 +155,10 @@ This is a core method that is used to interact with the group for an object.
 function with_group(func!::Function, x)
     init_jld(x)
     jldopen(jld_fn(x), "r+") do f
-        g = f[groupname!(x)[1]]
-        func!(g)
+        g = g_open(f, groupname!(x)[1])
+        out = func!(g)
+        close(g)
+        out
     end
 end
 
