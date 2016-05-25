@@ -140,8 +140,6 @@ is equivalent to
 foobar(x, nm, obj) = with_file(f -> foobar(y), x)
 ```
 
-Here's the same example from the REPL (note that some comments have been removed from the output)
-
 <a id='ModelerToolbox.write_jld-Tuple{Any,Any,Any}' href='#ModelerToolbox.write_jld-Tuple{Any,Any,Any}'>#</a>
 **`ModelerToolbox.write_jld`** &mdash; *Method*.
 
