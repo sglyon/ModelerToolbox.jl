@@ -160,8 +160,12 @@ function with_group(func!::Function, x)
     init_jld(x)
     jldopen(jld_fn(x), "r+") do f
         g = g_open(f, groupname!(x)[1])
-        out = func!(g)
-        close(g)
+        local out
+        try
+            out = func!(g)
+        finally
+            close(g)
+        end
         out
     end
 end
