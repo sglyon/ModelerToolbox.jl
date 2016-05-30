@@ -36,6 +36,9 @@ function init_jld(x, force::Bool=false)
             grps = Dict(group_keys(x) => "group1")
             write(f, "groups", grps)
             g_create(f, "group1")
+
+            # write a value.... somehow this prevents bugs?
+            write(f, "group1/visted", true)
         end
 
         return
@@ -135,6 +138,7 @@ function groupname!(x)
             if !group_exists
                 # create the group
                 g_create(f, name)
+                write(f, "$(name)/visted", true)
             end
         end
     end
@@ -239,6 +243,15 @@ macro with_file(ex)
     :($(esc(f))($(args...)) = with_file(f -> $body, $(args[1])))
 end
 
+@with_group function write_jld(x; kwargs...)
+    with_group(x) do g
+        for (_nm, obj) in kwargs
+            nm = string(_nm)
+            write(g, nm, obj)
+        end
+    end
+end
+
 """
 ```julia
 write_jld(x, nm, obj)
@@ -303,9 +316,19 @@ write_jld!(x, nm, obj)
 Write the object `obj` `x`'s jld group under name `nm`. This routine will
 overwrite any existing object with name `nm` in the group.
 """
-@with_group function write_jld!(x, nm, obj)
-    exists(g, nm) && delete!(g, nm)
-    write(g, nm, obj)
+@with_group function write_jld!(x, name1, val1)
+    exists(g, name1) && delete!(g, name1)
+    write(g, name1, val1)
+end
+
+function write_jld!(x; kwargs...)
+    with_group(x) do g
+        for (_nm, obj) in kwargs
+            nm = string(_nm)
+            exists(g, nm) && delete!(g, nm)
+            write(g, nm, obj)
+        end
+    end
 end
 
 """

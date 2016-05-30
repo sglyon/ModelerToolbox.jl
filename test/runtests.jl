@@ -59,7 +59,7 @@ init_jld(a1)
 @test groupname!(a3) == ("group1", true, true)
 
 # test with_group and with_file
-@test isempty(with_group(names, l1))
+@test length(with_group(names, l1)) == 1
 @test sort(with_file(names, l1)) == ["group1", "group2", "group3", "groups"]
 
 # test delete_group!
@@ -101,7 +101,7 @@ write_jld(l1, "bing", "bong")
 @test haskey_jld(l1, "bing")
 
 # test names_jld
-@test sort(names_jld(l1)) == ["bing"]
+@test sort(names_jld(l1)) == ["bing", "visted"]
 
 # test groups
 grps = groups(l1)
@@ -111,8 +111,8 @@ grps = groups(l1)
 
 
 # test write_jld!
-write_jld!(l1, "bing", 42)
+write_jld!(l1, bing=42)
 @test read_jld(l1, "bing") == 42
 
-write_jld!(l1, "hello", "world")
+write_jld!(l1, hello="world")
 @test read_jld(l1, "hello") == "world"
