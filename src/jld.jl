@@ -325,6 +325,7 @@ overwrite any existing object with name `nm` in the group.
     write(g, name1, val1)
 end
 
+# TODO: with_group doesn't work with kwargs... yet
 function write_jld!(x; kwargs...)
     with_group(x) do g
         for (_nm, obj) in kwargs
