@@ -247,12 +247,27 @@ macro with_file(ex)
     :($(esc(f))($(args...)) = with_file(f -> $body, $(args[1])))
 end
 
-@with_group function write_jld(x; kwargs...)
-    with_group(x) do g
+function _write_jld(overrwrite::Bool, x; kwargs...)
+    grp_nm = groupname!(x)[1]
+    with_file(x) do f
         for (_nm, obj) in kwargs
-            nm = string(_nm)
-            write(g, nm, obj)
+            nm = "$grp_nm/$(_nm)"
+            if overrwrite
+                exists(f, nm) && delete!(f, nm)
+            end
+            write(f, nm, obj)
         end
+    end
+end
+
+function _write_jld(overrwrite::Bool, x, _nm, obj)
+    grp_nm = groupname!(x)[1]
+    with_file(x) do f
+        nm = "$grp_nm/$(_nm)"
+        if overrwrite
+            exists(f, nm) && delete!(f, nm)
+        end
+        write(f, nm, obj)
     end
 end
 
@@ -263,7 +278,19 @@ write_jld(x, nm, obj)
 
 Write the object `obj` `x`'s jld group under name `nm`
 """
-@with_group write_jld(x, nm, obj) = write(g, nm, obj)
+write_jld(x, nm, obj) = _write_jld(false, x, nm, obj)
+write_jld(x; kwargs...) = _write_jld(false, x; kwargs...)
+
+"""
+```julia
+write_jld!(x, nm, obj)
+```
+
+Write the object `obj` `x`'s jld group under name `nm`. This routine will
+overwrite any existing object with name `nm` in the group.
+"""
+write_jld!(x, nm, obj) = _write_jld(true, x, nm, obj)
+write_jld!(x; kwargs...) = _write_jld(true, x; kwargs...)
 
 """
 ```julia
@@ -311,30 +338,6 @@ Return the dict mapping keys to jld group names for all objects of type
 for the instance `x`.
 """
 @with_file groups(x) = read(f, "groups")
-
-"""
-```julia
-write_jld!(x, nm, obj)
-```
-
-Write the object `obj` `x`'s jld group under name `nm`. This routine will
-overwrite any existing object with name `nm` in the group.
-"""
-@with_group function write_jld!(x, name1, val1)
-    exists(g, name1) && delete!(g, name1)
-    write(g, name1, val1)
-end
-
-# TODO: with_group doesn't work with kwargs... yet
-function write_jld!(x; kwargs...)
-    with_group(x) do g
-        for (_nm, obj) in kwargs
-            nm = string(_nm)
-            exists(g, nm) && delete!(g, nm)
-            write(g, nm, obj)
-        end
-    end
-end
 
 """
 ```julia
