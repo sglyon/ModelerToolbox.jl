@@ -35,10 +35,7 @@ function init_jld(x, force::Bool=false)
         jldopen(jld_fn(x), "w") do f
             grps = Dict(group_keys(x) => "group1")
             write(f, "groups", grps)
-            g_create(f, "group1")
-
-            # write a value.... somehow this prevents bugs?
-            write(f, "group1/visted", true)
+            write(f, "/group1/visited", true)
         end
 
         return
@@ -65,11 +62,11 @@ function groupname(x)
     #       infinite recursion when `init_jld` calls this routine (via a call
     #       to `groupname!`)
     grps = jldopen(jld_fn(x), "r+") do f
-        if exists(f, "groups")
+        if haskey(f, "groups")
             read(f, "groups")
         else
             # make sure group1 doesn't already exist
-            if exists(f, "group1")
+            if haskey(f, "group1")
                 delete!(f, "group1")
             end
             return "group1", false, false
@@ -86,7 +83,7 @@ function groupname(x)
         group_map_exists = true
 
         group_exists = jldopen(jld_fn(x), "r") do f
-            exists(f, name)
+            haskey(f, name)
         end
 
         return name, group_map_exists, group_exists
@@ -120,7 +117,7 @@ function groupname!(x)
         jldopen(jld_fn(x), "r+") do f
 
             if !group_map_exists
-                if exists(f, "groups")
+                if haskey(f, "groups")
                     # get current groups
                     groups = read(f, "groups")
 
@@ -137,8 +134,7 @@ function groupname!(x)
 
             if !group_exists
                 # create the group
-                g_create(f, name)
-                write(f, "$(name)/visted", true)
+                write(f, "/$(name)/visited", true)
             end
         end
     end
@@ -159,14 +155,8 @@ This is a core method that is used to interact with the group for an object.
 function with_group(func!::Function, x)
     init_jld(x)
     jldopen(jld_fn(x), "r+") do f
-        g = g_open(f, groupname!(x)[1])
-        local out
-        try
-            out = func!(g)
-        finally
-            close(g)
-        end
-        out
+        gn = groupname!(f)[1]
+        func!(f[gn])
     end
 end
 
@@ -187,7 +177,7 @@ function with_file(func!::Function, x)
 end
 
 function _get_f_args_body(ex::Expr)
-    # try one line function definitino version
+    # try one line function definition version
     @capture(ex, f_(args__) = body_)
     if any(map(x->x==nothing, (f, args, body)))
 
@@ -251,9 +241,9 @@ function _write_jld(overrwrite::Bool, x; kwargs...)
     grp_nm = groupname!(x)[1]
     with_file(x) do f
         for (_nm, obj) in kwargs
-            nm = "$grp_nm/$(_nm)"
+            nm = "/$grp_nm/$(_nm)"
             if overrwrite
-                exists(f, nm) && delete!(f, nm)
+                haskey(f, nm) && delete!(f, nm)
             end
             write(f, nm, obj)
         end
@@ -263,9 +253,9 @@ end
 function _write_jld(overrwrite::Bool, x, _nm, obj)
     grp_nm = groupname!(x)[1]
     with_file(x) do f
-        nm = "$grp_nm/$(_nm)"
+        nm = "/$grp_nm/$(_nm)"
         if overrwrite
-            exists(f, nm) && delete!(f, nm)
+            haskey(f, nm) && delete!(f, nm)
         end
         write(f, nm, obj)
     end

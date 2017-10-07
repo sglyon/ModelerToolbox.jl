@@ -1,6 +1,6 @@
 module ModelerToolbox
 
-using JLD, HDF5, MacroTools
+using JLD2, MacroTools
 
 # NOTE: exports in each file
 
